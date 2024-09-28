@@ -19,7 +19,14 @@ function App() {
 
   return (
     <div className="App">
-        <input type="input" value="input goes here" style={{border:"solid 1px black"}}/>
+      <form style={{display:"flex", flexDirection:"column", width:"30%", verticalAlign:"center", position: "relative", left:"50%", transform:"translateX(-50%)"}}>
+        <input type="input" placeholder="First Name" id="firstName" autocomplete="firstName" required style={{border:"solid 1px black"}}/>
+        <input type="input" placeholder="Last Name" id="lastName" autocomplete="lastName" required style={{border:"solid 1px black"}}/>
+        <input type="input" placeholder="Email" id="email" autocomplete="email" required style={{border:"solid 1px black"}}/>
+        <input type="input" placeholder="New Password" id="password" required style={{border:"solid 1px black"}}/>
+        <input type="input" placeholder="Confirm Password" id="confirmPassword" required style={{border:"solid 1px black"}}/>
+        <button type="submit" onClick={handleClick} style={{border:"solid 1px black", backgroundColor:"blue", color:"white"}}>Submit</button>
+      </form>
         {/* <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
             <div class="sm:mx-auto sm:w-full sm:max-w-sm">
                 <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
