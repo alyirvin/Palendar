@@ -38,21 +38,21 @@ function App() {
   }
 
   return (
-    <div className="App happy-monkey-regular">
-      <form onSubmit={handleSubmit} id="loginForm" style={{display:"flex", flexDirection:"column", width:"30%", verticalAlign:"center", position: "relative", left:"50%", transform:"translateX(-50%)"}}>
-        <label htmlFor="firstName" style={{textAlign:"left"}}>First Name</label>
-        <input value={firstName} onChange ={(e) => setFirstName(e.target.value)} placeholder="First Name" id="firstName" autoComplete="firstName" required style={{border:"solid 1px black"}}/>
-        <label htmlFor="lastName" style={{textAlign:"left"}}>Last Name</label>
-        <input value={lastName} onChange ={(e) => setLastName(e.target.value)} placeholder="Last Name" id="lastName" autoComplete="lastName" required style={{border:"solid 1px black"}}/>
-        <label htmlFor="email" style={{textAlign:"left"}}>Email</label>
-        <input value={email} onChange ={(e) => setEmail(e.target.value)} placeholder="Email" id="email" autoComplete="email" required style={{border:"solid 1px black"}}/>
-        <label htmlFor="password" style={{textAlign:"left"}}>Password</label>
-        <input value={password} onChange ={(e) => setPassword(e.target.value)} placeholder="New Password" id="password" required style={{border:"solid 1px black"}}/>
-        <label htmlFor="confirmPassword" style={{textAlign:"left"}}>Confirm Password</label>
-        <input value={confirmPassword} onChange ={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" id="confirmPassword" required style={{border:"solid 1px black"}}/>
-        <button type="submit" value="Submit" style={{border:"solid 1px black", backgroundColor:"pink", color:"white"}}>Submit</button>
-      </form>
-    </div>
+    <div className="App happy-monkey-regular" style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+    <form onSubmit={handleSubmit} id="loginForm" style={{ display: "flex", flexDirection: "column", width: "50%", padding: "20px", border: "solid 1px black", borderRadius: "10px", backgroundColor: "#f9f9f9" }}>
+      <label htmlFor="firstName" style={{ textAlign: "left", marginBottom: "10px" }}>First Name</label>
+      <input value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" id="firstName" autoComplete="firstName" required style={{ border: "solid 1px black", marginBottom: "20px", padding: "10px", borderRadius: "5px" }} />
+      <label htmlFor="lastName" style={{ textAlign: "left", marginBottom: "10px" }}>Last Name</label>
+      <input value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" id="lastName" autoComplete="lastName" required style={{ border: "solid 1px black", marginBottom: "20px", padding: "10px", borderRadius: "5px" }} />
+      <label htmlFor="email" style={{ textAlign: "left", marginBottom: "10px" }}>Email</label>
+      <input value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" id="email" autoComplete="email" required style={{ border: "solid 1px black", marginBottom: "20px", padding: "10px", borderRadius: "5px" }} />
+      <label htmlFor="password" style={{ textAlign: "left", marginBottom: "10px" }}>Password</label>
+      <input value={password} onChange={(e) => setPassword(e.target.value)} placeholder="New Password" id="password" required style={{ border: "solid 1px black", marginBottom: "20px", padding: "10px", borderRadius: "5px" }} />
+      <label htmlFor="confirmPassword" style={{ textAlign: "left", marginBottom: "10px" }}>Confirm Password</label>
+      <input value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" id="confirmPassword" required style={{ border: "solid 1px black", marginBottom: "20px", padding: "10px", borderRadius: "5px" }} />
+      <button type="submit" value="Submit" style={{ border: "solid 1px black", backgroundColor: "hot pink", color: "white", padding: "10px", borderRadius: "5px", fontFamily: "inherit" }}>Submit</button>
+    </form>
+  </div>
   );
 }
 
