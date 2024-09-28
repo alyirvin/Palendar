@@ -18,12 +18,17 @@
   }
   
   .App-header {
-    background-color: #282c34;
+    background-color: #7da6d0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  .App {
+    background-color: #7da6d0;
     font-size: calc(10px + 2vmin);
     color: white;
   }
@@ -40,3 +45,12 @@
       transform: rotate(360deg);
     }
   }
+
+@import url('https://fonts.googleapis.com/css2?family=Happy+Monkey&display=swap');
+
+  .happy-monkey-regular {
+    font-family: "Happy Monkey", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+  

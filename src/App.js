@@ -1,69 +1,57 @@
 import './App.css';
 import axios from 'axios';
-import React from 'react';
+import React, {useState} from 'react';
 
 function App() {
-  const [test, setTest] = React.useState(false);
-  const [data, setData] = React.useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
-  async function getBackendCall() {
-    const response = await axios.get('http://localhost:5008/test');
-    console.log(response.data);
-    setData(response.data);
-  }
-
-  async function handleClick() {
-    await getBackendCall();
-    setTest(!test);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+    try {
+      console.log("Calling /checkEmail endpoint");
+      const emailResponse = await axios.post('http://localhost:5008/checkEmail', {
+        email: email
+      });
+      console.log("Response from /checkEmail endpoint: ", emailResponse);
+      if (emailResponse.exists) {
+        alert('Email already exists');
+        return;
+      }
+      const registerResponse = await axios.post('http://localhost:5008/registerUser', {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        password: password
+      });
+      alert('User created');
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   return (
-    <div className="App">
-      <form style={{display:"flex", flexDirection:"column", width:"30%", verticalAlign:"center", position: "relative", left:"50%", transform:"translateX(-50%)"}}>
-        <input type="input" placeholder="First Name" id="firstName" autocomplete="firstName" required style={{border:"solid 1px black"}}/>
-        <input type="input" placeholder="Last Name" id="lastName" autocomplete="lastName" required style={{border:"solid 1px black"}}/>
-        <input type="input" placeholder="Email" id="email" autocomplete="email" required style={{border:"solid 1px black"}}/>
-        <input type="input" placeholder="New Password" id="password" required style={{border:"solid 1px black"}}/>
-        <input type="input" placeholder="Confirm Password" id="confirmPassword" required style={{border:"solid 1px black"}}/>
-        <button type="submit" onClick={handleClick} style={{border:"solid 1px black", backgroundColor:"blue", color:"white"}}>Submit</button>
+    <div className="App happy-monkey-regular">
+      <form onSubmit={handleSubmit} id="loginForm" style={{display:"flex", flexDirection:"column", width:"30%", verticalAlign:"center", position: "relative", left:"50%", transform:"translateX(-50%)"}}>
+        <label htmlFor="firstName" style={{textAlign:"left"}}>First Name</label>
+        <input value={firstName} onChange ={(e) => setFirstName(e.target.value)} placeholder="First Name" id="firstName" autoComplete="firstName" required style={{border:"solid 1px black"}}/>
+        <label htmlFor="lastName" style={{textAlign:"left"}}>Last Name</label>
+        <input value={lastName} onChange ={(e) => setLastName(e.target.value)} placeholder="Last Name" id="lastName" autoComplete="lastName" required style={{border:"solid 1px black"}}/>
+        <label htmlFor="email" style={{textAlign:"left"}}>Email</label>
+        <input value={email} onChange ={(e) => setEmail(e.target.value)} placeholder="Email" id="email" autoComplete="email" required style={{border:"solid 1px black"}}/>
+        <label htmlFor="password" style={{textAlign:"left"}}>Password</label>
+        <input value={password} onChange ={(e) => setPassword(e.target.value)} placeholder="New Password" id="password" required style={{border:"solid 1px black"}}/>
+        <label htmlFor="confirmPassword" style={{textAlign:"left"}}>Confirm Password</label>
+        <input value={confirmPassword} onChange ={(e) => setConfirmPassword(e.target.value)} placeholder="Confirm Password" id="confirmPassword" required style={{border:"solid 1px black"}}/>
+        <button type="submit" value="Submit" style={{border:"solid 1px black", backgroundColor:"pink", color:"white"}}>Submit</button>
       </form>
-        {/* <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
-            <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-                <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Sign in to your account</h2>
-            </div>
-
-            <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form class="space-y-6" action="#" method="POST">
-                <div>
-                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
-                    <div class="mt-2">
-                    <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="flex items-center justify-between">
-                    <label for="password" class="block text-sm font-medium leading-6 text-gray-900">Password</label>
-                    <div class="text-sm">
-                        <a href="#" class="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</a>
-                    </div>
-                    </div>
-                    <div class="mt-2">
-                    <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"/>
-                    </div>
-                </div>
-
-                <div>
-                    <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
-                </div>
-                </form>
-
-                <p class="mt-10 text-center text-sm text-gray-500">
-                Not a member?
-                <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</a>
-                </p>
-            </div>
-        </div> */}
     </div>
   );
 }
