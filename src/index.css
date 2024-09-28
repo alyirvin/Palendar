@@ -20,6 +20,125 @@ body {
     font-weight: 400;
     font-style: normal;
   }
-  form{
-    background-color: rgb(234, 168, 232) !important;
+
+    
+  .signLog
+  {
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    border: solid 1px black;
+    border-radius: 10px;
+    background-color: #96abe1;
+    align-items: center;
+    height: 70%;
+  }
+
+  .signLog .left,
+  .signLog .right
+  {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .signLog .right
+  {
+    height: 100%;
+  }
+
+  .signLog .divider
+  {
+    width: 1px;
+    height: 70%;
+    background-color: black;
+    position: absolute;
+    right: 50%;
+  }
+  .slider
+  {
+    height: 98%;
+    width: 98%;
+    /* border: solid 1px red; */
+    background-color: #96abe1;
+    position: absolute;
+    top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .slider button
+  {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .slider #createAccountMsg
+  {
+    display: block;
+  }
+
+  .slider #loginMsg
+  {
+    display: none;
+  }
+
+  .slider.translate
+  {
+    transform: translateX(-102%);
+  }
+
+  #loginForm,
+  #createForm
+  {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    width: 100%;
+  }
+
+  #createForm label
+  {
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 14pt;
+    width: 70%;
+  }
+
+  #loginForm input
+  {
+    margin-bottom: 30px !important;
+  }
+
+  #loginForm input,
+  #createForm input
+  {
+    border: solid 1px black;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12pt;
+    width: 70%;
+  }
+
+  #loginForm button,
+  #createForm button
+  {
+    background-color: pink;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: inherit;
+    width: 60%;
+    margin-top: 15px;
+    font-size: 12pt;
   }
