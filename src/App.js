@@ -2,6 +2,7 @@ import './App.css';
 // import axios from 'axios';
 import React, {useContext, useState} from 'react';
 import { GlobalContext } from './context';
+import { UserContext } from './context';
 import { initialUser } from './datatypes';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Groups from './Groups';
@@ -17,6 +18,7 @@ function App() {
   const { users, setUsers } = useContext(GlobalContext);
   const [currentUser, setCurrentUser] = useState(initialUser);
   const navigate = useNavigate(); 
+  const { setCurrentUser: setGlobalUser } = useContext(UserContext);
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -44,6 +46,7 @@ function App() {
 
       setUsers([...users, currentUser]);
       alert('User created');
+      setGlobalUser(currentUser);
       navigate('/Groups');
 
     } catch (error) {
@@ -59,6 +62,7 @@ function App() {
       if (person)
       {
         alert('Login successful');
+        setGlobalUser(currentUser);
         navigate('/Groups');
       }
       else
