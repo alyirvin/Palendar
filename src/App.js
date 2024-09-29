@@ -104,7 +104,7 @@ function App() {
                   {
                     ...initialResponse,
                     user: 'natalie',
-                    response: 'Cool!'
+                    response: 'FOOD! FOOD! FOOD!'
                   }
                 ]
               }
