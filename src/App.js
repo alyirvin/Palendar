@@ -103,8 +103,18 @@ function App() {
                 responses: [
                   {
                     ...initialResponse,
-                    user: 'natalie',
+                    user: 'michael',
                     response: 'FOOD! FOOD! FOOD!'
+                  },
+                  {
+                    ...initialResponse,
+                    user: 'kyla',
+                    response: 'Went to the aquarium, saw some eels. ew.'
+                  },
+                  {
+                    ...initialResponse,
+                    user: 'sophia',
+                    response: 'Boston birthday party!!!!!!!!!!! LFG!'
                   }
                 ]
               }

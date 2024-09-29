@@ -125,8 +125,9 @@ function Calendar() {
 
     return (
         <div className="container" style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-            <div className="calendar-name" style={{ marginRight: '20px', width: '20%' }}>
+            <div className="calendar-name" style={{ marginRight: '20px', width: '20%', display: 'flex', flexDirection: 'column'}}>
                 <h3>Palender {currentCalendar.name}</h3>
+                <div className="horse"></div>
             </div>
             <div className="calendar">
             <div className="calendar-header">
