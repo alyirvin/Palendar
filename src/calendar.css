@@ -1,0 +1,22 @@
+/* TIPS FOR NATALIE
+
+.WORDS <- indicates a class (i.e class="WORDS"), only affects those in the class
+#WORDS <- indicates an id (i.e id="WORDS"), only affects that specific id
+
+.WORDS1,
+.WORDS2
+{
+    All CSS code in here impacts both members of the WORDS1 and WORDS2 classes
+}
+
+.WORDS1 .WORDS2
+{
+    All CSS code in here impacts the WORDS2 class when it is inside of the WORDS1 class
+    ex:
+    <div class="WORDS1">
+        <div class="WORDS2">
+        </div>
+    </div>
+}
+
+^ This works too for ids and can be combined with the commas        */

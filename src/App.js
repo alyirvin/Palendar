@@ -1,24 +1,24 @@
 import './App.css';
 // import axios from 'axios';
-import React, {useContext, useState} from 'react';
-import { GlobalContext } from './context';
-import { UserContext } from './context';
-import { initialUser } from './datatypes';
+import React, {useContext, useState, useEffect} from 'react';
+import { GlobalContext, UserContext } from './context';
+import { initialUser, initialCalendar, initialImage } from './datatypes';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Groups from './Groups';
+import Calendar from './Calendar';
 
 function App() {
-
-  // const [firstName, setFirstName] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [confirmPassword, setConfirmPassword] = useState('');
 
   const { users, setUsers } = useContext(GlobalContext);
   const [currentUser, setCurrentUser] = useState(initialUser);
   const navigate = useNavigate(); 
   const { setCurrentUser: setGlobalUser } = useContext(UserContext);
+
+  const genUsers = {
+    username: '',
+    email: '',
+    password: ''
+  }
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -27,6 +27,102 @@ function App() {
       [id]: value
     });
   };
+
+  useEffect(() => {
+    const genUsers = [
+      {
+        ...initialUser,
+        username: 'natalie',
+        email: 'notero@email.com',
+        password: 'password',
+        calendars: [
+          {
+            ...initialCalendar,
+            name: 'Interns',
+            desc: 'For the interns at the company',
+            pass: 'intern',
+            images: [
+              {
+                ...initialImage,
+                year: 2023,
+                month: 1,
+                day: 1,
+                url: 'https://example.com/image1.jpg'
+              },
+              {
+                ...initialImage,
+                year: 2023,
+                month: 2,
+                day: 1,
+                url: 'https://example.com/image2.jpg'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        ...initialUser,
+        username: 'phoebe',
+        email: 'pcollins@email.com',
+        password: 'password',
+        calendars: [
+          {
+            ...initialCalendar,
+            name: 'Data Sciencers',
+            desc: 'Only super cool data scientists allowed',
+            pass: '',
+            images: [
+              {
+                ...initialImage,
+                year: 2023,
+                month: 3,
+                day: 1,
+                url: 'https://example.com/image3.jpg'
+              },
+              {
+                ...initialImage,
+                year: 2023,
+                month: 4,
+                day: 1,
+                url: 'https://example.com/image4.jpg'
+              }
+            ]
+          }
+        ]
+      },
+      {
+        ...initialUser,
+        username: 'alysha',
+        email: 'airvin@email.com',
+        password: 'password',
+        calendars: [
+          {
+            ...initialCalendar,
+            name: 'Grad Grad',
+            desc: 'Graduates ONLY',
+            pass: 'grad',
+            images: [
+              {
+                ...initialImage,
+                year: 2023,
+                month: 5,
+                day: 1,
+                url: 'https://example.com/image5.jpg'
+              },
+              {
+                ...initialImage,
+                year: 2023,
+                month: 6,
+                day: 1,
+                url: 'https://example.com/image6.jpg'
+              }
+            ]
+          }
+        ]
+      }
+    ];
+    setUsers(genUsers);
+  }, [genUsers]);
 
   const handleCreateAccount = async (e) => {
     e.preventDefault();
@@ -86,6 +182,18 @@ function App() {
     setIsSliderLogin(false);
   };
 
+  // NATALIE HANDLER HERE
+  const handleNatButton = async (e) => {
+    e.preventDefault();
+
+    try {
+      navigate('/Calendar');
+
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="App happy-monkey-regular" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", height: "100vh" }}>
       {/* Title Image */}
@@ -140,6 +248,14 @@ function App() {
           </form>
         </div>
       </div>
+        }/>
+      </Routes>
+      <Routes>
+        <Route path="/Calendar" element={<Calendar />} />
+        <Route path="/" element={
+        <div>
+          <button onClick={handleNatButton}>BUTTON FOR NATALIE</button>
+        </div>
         }/>
       </Routes>
     </div>
