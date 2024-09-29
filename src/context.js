@@ -28,3 +28,17 @@ export const UserProvider = ({ children }) => {
         </UserContext.Provider>
     );
 };
+
+export const CalendarContext = createContext();
+
+export const CalendarProvider = ({ children }) => {
+    const [currentCalendar, setCurrentCalendar] = useState([]);
+
+    return (
+        <CalendarContext.Provider value={{ 
+            currentCalendar, setCurrentCalendar
+        }}>
+            {children}
+        </CalendarContext.Provider>
+    );
+}

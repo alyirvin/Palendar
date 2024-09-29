@@ -2,7 +2,7 @@ import './App.css';
 // import axios from 'axios';
 import React, {useContext, useState, useEffect} from 'react';
 import { GlobalContext, UserContext } from './context';
-import { initialUser, initialCalendar, initialImage } from './datatypes';
+import { initialUser, initialCalendar, initialImage, initialResponse } from './datatypes';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Groups from './Groups';
 import Calendar from './Calendar';
@@ -13,12 +13,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(initialUser);
   const navigate = useNavigate(); 
   const { setCurrentUser: setGlobalUser } = useContext(UserContext);
-
-  const genUsers = {
-    username: '',
-    email: '',
-    password: ''
-  }
 
   const handleInputChange = (e) => {
     const { id, value } = e.target;
@@ -44,17 +38,31 @@ function App() {
             images: [
               {
                 ...initialImage,
-                year: 2023,
-                month: 1,
-                day: 1,
-                url: 'https://example.com/image1.jpg'
+                year: 2024,
+                month: 9,
+                day: 28,
+                url: 'https://example.com/image1.jpg',
+                responses: [
+                  {
+                    ...initialResponse,
+                    user: 'natalie',
+                    response: 'Great image!'
+                  }
+                ]
               },
               {
                 ...initialImage,
-                year: 2023,
-                month: 2,
-                day: 1,
-                url: 'https://example.com/image2.jpg'
+                year: 2024,
+                month: 9,
+                day: 29,
+                url: 'https://example.com/image2.jpg',
+                responses: [
+                  {
+                    ...initialResponse,
+                    user: 'phoebe',
+                    response: 'Nice!'
+                  }
+                ]
               }
             ]
           }
@@ -68,23 +76,37 @@ function App() {
         calendars: [
           {
             ...initialCalendar,
-            name: 'Data Sciencers',
+            name: 'Dataaa',
             desc: 'Only super cool data scientists allowed',
             pass: '',
             images: [
               {
                 ...initialImage,
-                year: 2023,
-                month: 3,
-                day: 1,
-                url: 'https://example.com/image3.jpg'
+                year: 2024,
+                month: 9,
+                day: 27,
+                url: 'https://example.com/image3.jpg',
+                responses: [
+                  {
+                    ...initialResponse,
+                    user: 'alysha',
+                    response: 'Interesting!'
+                  }
+                ]
               },
               {
                 ...initialImage,
-                year: 2023,
-                month: 4,
-                day: 1,
-                url: 'https://example.com/image4.jpg'
+                year: 2024,
+                month: 9,
+                day: 29,
+                url: 'https://example.com/image4.jpg',
+                responses: [
+                  {
+                    ...initialResponse,
+                    user: 'natalie',
+                    response: 'Cool!'
+                  }
+                ]
               }
             ]
           }
@@ -98,31 +120,33 @@ function App() {
         calendars: [
           {
             ...initialCalendar,
-            name: 'Grad Grad',
+            name: 'GradGrad',
             desc: 'Graduates ONLY',
             pass: 'grad',
             images: [
               {
                 ...initialImage,
-                year: 2023,
-                month: 5,
-                day: 1,
-                url: 'https://example.com/image5.jpg'
+                year: 2024,
+                month: 9,
+                day: 4,
+                url: 'https://example.com/image5.jpg',
+                responses: [
+                  {
+                    ...initialResponse,
+                    user: 'phoebe',
+                    response: 'Amazing!'
+                  }
+                ]
               },
-              {
-                ...initialImage,
-                year: 2023,
-                month: 6,
-                day: 1,
-                url: 'https://example.com/image6.jpg'
-              }
             ]
           }
         ]
       }
     ];
+
     setUsers(genUsers);
-  }, [genUsers]);
+    console.log(users);
+  }, []);
 
   const handleCreateAccount = async (e) => {
     e.preventDefault();
@@ -158,7 +182,8 @@ function App() {
       if (person)
       {
         alert('Login successful');
-        setGlobalUser(currentUser);
+        const you = users.find(user => user.username === currentUser.username);
+        setGlobalUser(you);
         navigate('/Groups');
       }
       else
@@ -198,7 +223,7 @@ function App() {
     <div className="App happy-monkey-regular" style={{ display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column", height: "100vh" }}>
       {/* Title Image */}
       <img 
-        src="/Palendar_Logo-removebg-preview.png"  // Replace with your image URL
+        // src="/Palendar_Logo-removebg-preview.png"  // Replace with your image URL
         //alt="Title"
         style={{ width: "350px", marginBottom: "1px" }} // Adjust width and margin as needed
       />
@@ -249,8 +274,8 @@ function App() {
         </div>
       </div>
         }/>
-      </Routes>
-      <Routes>
+      {/* </Routes>
+      <Routes> */}
         <Route path="/Calendar" element={<Calendar />} />
         <Route path="/" element={
         <div>
